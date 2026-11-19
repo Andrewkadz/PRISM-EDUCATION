@@ -1,0 +1,6 @@
+name = "PrismPrismCourseQuiz"
+version = "0.1.0"
+defaultTargets = ["PrismPrismCourseQuiz"]
+
+[[lean_lib]]
+name = "PrismPrismCourseQuiz"

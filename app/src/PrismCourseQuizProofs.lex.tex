@@ -1,0 +1,240 @@
+\begin{lexlean}{PrismCourseQuizProofs}
+\useglossary{lexlean.std.bool@1.2.0}
+\useglossary{lexlean.std.nat@1.2.0}
+\useglossary{prism.arch@1.0.0}
+\importmodule{PrismCourseQuiz}
+\title{Text application model}
+\begin{semanticmodule}
+definition{
+  name: breaksInv001,
+  parameters: [request : PrismCourseQuiz::Request],
+  result: Bool,
+  body: ((((((1 <=? (project request question)) && ((project request question) <=? 18)) && ((project request answer) <? 3)) && ((project request question) =? 8)) && (not ((project request answer) =? (PrismCourseQuiz::answerA)))) && ((PrismCourseQuiz::judge request) =? (PrismCourseQuiz::answerCorrect)))
+}
+
+theorem{
+  name: inv001Holds,
+  parameters: [request : PrismCourseQuiz::Request],
+  statement: ((breaksInv001 request) = false),
+  proof: linear_arithmetic{
+    definitions: [
+      PrismCourseQuiz::answerA,
+      PrismCourseQuiz::answerB,
+      PrismCourseQuiz::answerC,
+      PrismCourseQuiz::answerCorrect,
+      PrismCourseQuiz::answerIncorrect,
+      PrismCourseQuiz::judge,
+      PrismCourseQuiz::rule1,
+      PrismCourseQuiz::rule2,
+      PrismCourseQuiz::rule3,
+      PrismCourseQuiz::rule4,
+      breaksInv001
+    ]
+  },
+  axioms: [Quot.sound, propext]
+}
+
+definition{
+  name: breaksInv002,
+  parameters: [request : PrismCourseQuiz::Request],
+  result: Bool,
+  body: ((((((1 <=? (project request question)) && ((project request question) <=? 18)) && ((project request answer) <? 3)) && ((project request question) =? 9)) && (not ((project request answer) =? (PrismCourseQuiz::answerC)))) && ((PrismCourseQuiz::judge request) =? (PrismCourseQuiz::answerCorrect)))
+}
+
+theorem{
+  name: inv002Holds,
+  parameters: [request : PrismCourseQuiz::Request],
+  statement: ((breaksInv002 request) = false),
+  proof: linear_arithmetic{
+    definitions: [
+      PrismCourseQuiz::answerA,
+      PrismCourseQuiz::answerB,
+      PrismCourseQuiz::answerC,
+      PrismCourseQuiz::answerCorrect,
+      PrismCourseQuiz::answerIncorrect,
+      PrismCourseQuiz::judge,
+      PrismCourseQuiz::rule1,
+      PrismCourseQuiz::rule2,
+      PrismCourseQuiz::rule3,
+      PrismCourseQuiz::rule4,
+      breaksInv002
+    ]
+  },
+  axioms: [Quot.sound, propext]
+}
+
+definition{
+  name: breaksInv003,
+  parameters: [request : PrismCourseQuiz::Request],
+  result: Bool,
+  body: (((((((1 <=? (project request question)) && ((project request question) <=? 18)) && ((project request answer) <? 3)) && (15 <=? (project request question))) && ((project request question) <=? 16)) && (not ((project request answer) =? (PrismCourseQuiz::answerA)))) && ((PrismCourseQuiz::judge request) =? (PrismCourseQuiz::answerCorrect)))
+}
+
+theorem{
+  name: inv003Holds,
+  parameters: [request : PrismCourseQuiz::Request],
+  statement: ((breaksInv003 request) = false),
+  proof: linear_arithmetic{
+    definitions: [
+      PrismCourseQuiz::answerA,
+      PrismCourseQuiz::answerB,
+      PrismCourseQuiz::answerC,
+      PrismCourseQuiz::answerCorrect,
+      PrismCourseQuiz::answerIncorrect,
+      PrismCourseQuiz::judge,
+      PrismCourseQuiz::rule1,
+      PrismCourseQuiz::rule2,
+      PrismCourseQuiz::rule3,
+      PrismCourseQuiz::rule4,
+      breaksInv003
+    ]
+  },
+  axioms: [Quot.sound, propext]
+}
+
+definition{
+  name: breaksInv004,
+  parameters: [request : PrismCourseQuiz::Request],
+  result: Bool,
+  body: (((((((((1 <=? (project request question)) && ((project request question) <=? 18)) && ((project request answer) <? 3)) && (not ((project request question) =? 8))) && (not ((project request question) =? 9))) && (not ((project request question) =? 15))) && (not ((project request question) =? 16))) && (not ((project request answer) =? (PrismCourseQuiz::answerB)))) && ((PrismCourseQuiz::judge request) =? (PrismCourseQuiz::answerCorrect)))
+}
+
+theorem{
+  name: inv004Holds,
+  parameters: [request : PrismCourseQuiz::Request],
+  statement: ((breaksInv004 request) = false),
+  proof: linear_arithmetic{
+    definitions: [
+      PrismCourseQuiz::answerA,
+      PrismCourseQuiz::answerB,
+      PrismCourseQuiz::answerC,
+      PrismCourseQuiz::answerCorrect,
+      PrismCourseQuiz::answerIncorrect,
+      PrismCourseQuiz::judge,
+      PrismCourseQuiz::rule1,
+      PrismCourseQuiz::rule2,
+      PrismCourseQuiz::rule3,
+      PrismCourseQuiz::rule4,
+      breaksInv004
+    ]
+  },
+  axioms: [Quot.sound, propext]
+}
+
+definition{
+  name: breaksInv005,
+  parameters: [request : PrismCourseQuiz::Request],
+  result: Bool,
+  body: ((((((1 <=? (project request question)) && ((project request question) <=? 18)) && ((project request answer) <? 3)) && ((project request question) =? 8)) && ((project request answer) =? (PrismCourseQuiz::answerA))) && (not ((PrismCourseQuiz::judge request) =? (PrismCourseQuiz::answerCorrect))))
+}
+
+theorem{
+  name: inv005Holds,
+  parameters: [request : PrismCourseQuiz::Request],
+  statement: ((breaksInv005 request) = false),
+  proof: linear_arithmetic{
+    definitions: [
+      PrismCourseQuiz::answerA,
+      PrismCourseQuiz::answerB,
+      PrismCourseQuiz::answerC,
+      PrismCourseQuiz::answerCorrect,
+      PrismCourseQuiz::answerIncorrect,
+      PrismCourseQuiz::judge,
+      PrismCourseQuiz::rule1,
+      PrismCourseQuiz::rule2,
+      PrismCourseQuiz::rule3,
+      PrismCourseQuiz::rule4,
+      breaksInv005
+    ]
+  },
+  axioms: [Classical.choice, Quot.sound, propext]
+}
+
+definition{
+  name: breaksInv006,
+  parameters: [request : PrismCourseQuiz::Request],
+  result: Bool,
+  body: ((((((1 <=? (project request question)) && ((project request question) <=? 18)) && ((project request answer) <? 3)) && ((project request question) =? 9)) && ((project request answer) =? (PrismCourseQuiz::answerC))) && (not ((PrismCourseQuiz::judge request) =? (PrismCourseQuiz::answerCorrect))))
+}
+
+theorem{
+  name: inv006Holds,
+  parameters: [request : PrismCourseQuiz::Request],
+  statement: ((breaksInv006 request) = false),
+  proof: linear_arithmetic{
+    definitions: [
+      PrismCourseQuiz::answerA,
+      PrismCourseQuiz::answerB,
+      PrismCourseQuiz::answerC,
+      PrismCourseQuiz::answerCorrect,
+      PrismCourseQuiz::answerIncorrect,
+      PrismCourseQuiz::judge,
+      PrismCourseQuiz::rule1,
+      PrismCourseQuiz::rule2,
+      PrismCourseQuiz::rule3,
+      PrismCourseQuiz::rule4,
+      breaksInv006
+    ]
+  },
+  axioms: [Classical.choice, Quot.sound, propext]
+}
+
+definition{
+  name: breaksInv007,
+  parameters: [request : PrismCourseQuiz::Request],
+  result: Bool,
+  body: (((((((1 <=? (project request question)) && ((project request question) <=? 18)) && ((project request answer) <? 3)) && (15 <=? (project request question))) && ((project request question) <=? 16)) && ((project request answer) =? (PrismCourseQuiz::answerA))) && (not ((PrismCourseQuiz::judge request) =? (PrismCourseQuiz::answerCorrect))))
+}
+
+theorem{
+  name: inv007Holds,
+  parameters: [request : PrismCourseQuiz::Request],
+  statement: ((breaksInv007 request) = false),
+  proof: linear_arithmetic{
+    definitions: [
+      PrismCourseQuiz::answerA,
+      PrismCourseQuiz::answerB,
+      PrismCourseQuiz::answerC,
+      PrismCourseQuiz::answerCorrect,
+      PrismCourseQuiz::answerIncorrect,
+      PrismCourseQuiz::judge,
+      PrismCourseQuiz::rule1,
+      PrismCourseQuiz::rule2,
+      PrismCourseQuiz::rule3,
+      PrismCourseQuiz::rule4,
+      breaksInv007
+    ]
+  },
+  axioms: [Classical.choice, Quot.sound, propext]
+}
+
+definition{
+  name: breaksInv008,
+  parameters: [request : PrismCourseQuiz::Request],
+  result: Bool,
+  body: (((((((((1 <=? (project request question)) && ((project request question) <=? 18)) && ((project request answer) <? 3)) && (not ((project request question) =? 8))) && (not ((project request question) =? 9))) && (not ((project request question) =? 15))) && (not ((project request question) =? 16))) && ((project request answer) =? (PrismCourseQuiz::answerB))) && (not ((PrismCourseQuiz::judge request) =? (PrismCourseQuiz::answerCorrect))))
+}
+
+theorem{
+  name: inv008Holds,
+  parameters: [request : PrismCourseQuiz::Request],
+  statement: ((breaksInv008 request) = false),
+  proof: linear_arithmetic{
+    definitions: [
+      PrismCourseQuiz::answerA,
+      PrismCourseQuiz::answerB,
+      PrismCourseQuiz::answerC,
+      PrismCourseQuiz::answerCorrect,
+      PrismCourseQuiz::answerIncorrect,
+      PrismCourseQuiz::judge,
+      PrismCourseQuiz::rule1,
+      PrismCourseQuiz::rule2,
+      PrismCourseQuiz::rule3,
+      PrismCourseQuiz::rule4,
+      breaksInv008
+    ]
+  },
+  axioms: [Classical.choice, Quot.sound, propext]
+}
+\end{semanticmodule}
+\end{lexlean}

@@ -1,0 +1,155 @@
+{
+  "name": "Prism course quiz",
+  "shortName": "Prism",
+  "live": "https://andrewkadz.github.io/PRISM-EDUCATION/",
+  "purpose": "Grade one answer to a quiz question in the Prism onboarding course as correct or incorrect. Send question or answer, separated by spaces; it answers correct or incorrect, and invalid request for anything else.",
+  "inputLabel": "Request: question answer",
+  "placeholder": "1 b",
+  "submitLabel": "Decide",
+  "outputLabel": "Answer",
+  "answers": {
+    "positive": [
+      "correct"
+    ],
+    "negative": [
+      "incorrect"
+    ],
+    "refusal": "invalid request"
+  },
+  "promise": {
+    "headline": "Says conformant exactly when every policy file matches its lock.",
+    "detail": "Each of the six universal policy files is compared with the digest the lock records, and any file that drifted is named."
+  },
+  "claim": "PC-01: the app never answers correct when question equals 8 and answer is not a. PC-02: the app never answers correct when question equals 9 and answer is not c. PC-03: the app never answers correct when question is at least 15 and question is at most 16 and answer is not a. PC-04: the app never answers correct when question differs from 8 and question differs from 9 and question differs from 15 and question differs from 16 and answer is not b. PC-05: the app always answers correct when question equals 8 and answer is a. PC-06: the app always answers correct when question equals 9 and answer is c. PC-07: the app always answers correct when question is at least 15 and question is at most 16 and answer is a. PC-08: the app always answers correct when question differs from 8 and question differs from 9 and question differs from 15 and question differs from 16 and answer is b.",
+  "proposition": {
+    "name": "judge",
+    "text": "judge request :=\n  question equals 8 and answer is a → correct\n  question equals 9 and answer is c → correct\n  question is at least 15 and question is at most 16 and answer is a → correct\n  question differs from 8 and question differs from 9 and question differs from 15 and question differs from 16 and answer is b → correct\n  otherwise → incorrect",
+    "plain": "Grade one answer to a quiz question in the Prism onboarding course as correct or incorrect."
+  },
+  "theorems": [
+    {
+      "name": "inv001Holds",
+      "statement": "no request meets breaksInv001: the app never answers correct when question equals 8 and answer is not a",
+      "how": "Proved by linear arithmetic, checked by the Lean kernel on the UOR MCP server and again by prismpm verify in CI",
+      "where": "app/src/PrismCourseQuizProofs.lex.tex"
+    },
+    {
+      "name": "inv002Holds",
+      "statement": "no request meets breaksInv002: the app never answers correct when question equals 9 and answer is not c",
+      "how": "Proved by linear arithmetic, checked by the Lean kernel on the UOR MCP server and again by prismpm verify in CI",
+      "where": "app/src/PrismCourseQuizProofs.lex.tex"
+    },
+    {
+      "name": "inv003Holds",
+      "statement": "no request meets breaksInv003: the app never answers correct when question is at least 15 and question is at most 16 and answer is not a",
+      "how": "Proved by linear arithmetic, checked by the Lean kernel on the UOR MCP server and again by prismpm verify in CI",
+      "where": "app/src/PrismCourseQuizProofs.lex.tex"
+    },
+    {
+      "name": "inv004Holds",
+      "statement": "no request meets breaksInv004: the app never answers correct when question differs from 8 and question differs from 9 and question differs from 15 and question differs from 16 and answer is not b",
+      "how": "Proved by linear arithmetic, checked by the Lean kernel on the UOR MCP server and again by prismpm verify in CI",
+      "where": "app/src/PrismCourseQuizProofs.lex.tex"
+    },
+    {
+      "name": "inv005Holds",
+      "statement": "no request meets breaksInv005: the app always answers correct when question equals 8 and answer is a",
+      "how": "Proved by linear arithmetic, checked by the Lean kernel on the UOR MCP server and again by prismpm verify in CI",
+      "where": "app/src/PrismCourseQuizProofs.lex.tex"
+    },
+    {
+      "name": "inv006Holds",
+      "statement": "no request meets breaksInv006: the app always answers correct when question equals 9 and answer is c",
+      "how": "Proved by linear arithmetic, checked by the Lean kernel on the UOR MCP server and again by prismpm verify in CI",
+      "where": "app/src/PrismCourseQuizProofs.lex.tex"
+    },
+    {
+      "name": "inv007Holds",
+      "statement": "no request meets breaksInv007: the app always answers correct when question is at least 15 and question is at most 16 and answer is a",
+      "how": "Proved by linear arithmetic, checked by the Lean kernel on the UOR MCP server and again by prismpm verify in CI",
+      "where": "app/src/PrismCourseQuizProofs.lex.tex"
+    },
+    {
+      "name": "inv008Holds",
+      "statement": "no request meets breaksInv008: the app always answers correct when question differs from 8 and question differs from 9 and question differs from 15 and question differs from 16 and answer is b",
+      "how": "Proved by linear arithmetic, checked by the Lean kernel on the UOR MCP server and again by prismpm verify in CI",
+      "where": "app/src/PrismCourseQuizProofs.lex.tex"
+    }
+  ],
+  "pinned": [
+    {
+      "name": "prism_course_quiz_pc_01",
+      "what": "PC-01's condition and the theorem that no request meets it. A string-matching test, not a theorem: a planted defect fails it.",
+      "where": "crates/conformance/tests/prism_course_quiz.rs"
+    },
+    {
+      "name": "prism_course_quiz_pc_02",
+      "what": "PC-02's condition and the theorem that no request meets it. A string-matching test, not a theorem: a planted defect fails it.",
+      "where": "crates/conformance/tests/prism_course_quiz.rs"
+    },
+    {
+      "name": "prism_course_quiz_pc_03",
+      "what": "PC-03's condition and the theorem that no request meets it. A string-matching test, not a theorem: a planted defect fails it.",
+      "where": "crates/conformance/tests/prism_course_quiz.rs"
+    },
+    {
+      "name": "prism_course_quiz_pc_04",
+      "what": "PC-04's condition and the theorem that no request meets it. A string-matching test, not a theorem: a planted defect fails it.",
+      "where": "crates/conformance/tests/prism_course_quiz.rs"
+    },
+    {
+      "name": "prism_course_quiz_pc_05",
+      "what": "PC-05's condition and the theorem that no request meets it. A string-matching test, not a theorem: a planted defect fails it.",
+      "where": "crates/conformance/tests/prism_course_quiz.rs"
+    },
+    {
+      "name": "prism_course_quiz_pc_06",
+      "what": "PC-06's condition and the theorem that no request meets it. A string-matching test, not a theorem: a planted defect fails it.",
+      "where": "crates/conformance/tests/prism_course_quiz.rs"
+    },
+    {
+      "name": "prism_course_quiz_pc_07",
+      "what": "PC-07's condition and the theorem that no request meets it. A string-matching test, not a theorem: a planted defect fails it.",
+      "where": "crates/conformance/tests/prism_course_quiz.rs"
+    },
+    {
+      "name": "prism_course_quiz_pc_08",
+      "what": "PC-08's condition and the theorem that no request meets it. A string-matching test, not a theorem: a planted defect fails it.",
+      "where": "crates/conformance/tests/prism_course_quiz.rs"
+    }
+  ],
+  "trusted": [
+    {
+      "name": "SDK image",
+      "value": "the digest prismpm.lock pins; see the bootstrap workflow's log"
+    },
+    {
+      "name": "Lean toolchain",
+      "value": "leanprover/lean4:v4.32.1"
+    },
+    {
+      "name": "LexLean compiler semantics",
+      "value": "5262e5b4c8b5668ae7066ad686757a6bb7f80c941d515fb9d586894fbc7de69a"
+    },
+    {
+      "name": "prism-code runtime, vendored",
+      "value": "0.2.0, see try/vendor/prism-code/VENDOR.md"
+    },
+    {
+      "name": "Your browser",
+      "value": "runs the WebAssembly guest and this page"
+    }
+  ],
+  "attestations": {
+    "proof": {
+      "id": "65a6073f6953073e0585228477858917f5f9413e27187ad8690f9ae4bc739b29",
+      "url": "https://github.com/Andrewkadz/PRISM-EDUCATION/actions/workflows/bootstrap.yml"
+    },
+    "build": {
+      "id": "printed by prismpm verify in every pages run",
+      "url": "https://github.com/Andrewkadz/PRISM-EDUCATION/actions/workflows/pages.yml"
+    }
+  },
+  "repository": "https://github.com/Andrewkadz/PRISM-EDUCATION",
+  "report": "https://github.com/Andrewkadz/PRISM-EDUCATION/blob/main/TEMPLATE-VERIFICATION.md"
+}
