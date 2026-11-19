@@ -1,0 +1,40 @@
+{
+  "schema": "prism/prompt/1",
+  "pattern": "stateMachine",
+  "goal": "Track a smart door lock, so a door that is open can never be locked.",
+  "machine": {"state": "state", "initial": "closed", "final": ["retired"]},
+  "app": {
+    "name": "door-lock",
+    "title": "Door lock",
+    "purpose": "Decide the next state of a smart door from its current state and the event that happened.",
+    "fields": [
+      {"name": "state", "kind": "choice", "values": ["closed", "open", "locked", "retired"], "means": "the door now"},
+      {"name": "event", "kind": "choice", "values": ["push", "shut", "lock", "unlock", "retire"], "means": "what just happened"}
+    ],
+    "outcomes": ["closed", "open", "locked", "retired"],
+    "rules": [
+      {"when": [{"field": "state", "op": "is", "value": "retired"}], "then": "retired", "why": "a retired lock ignores every event"},
+      {"when": [{"field": "event", "op": "is", "value": "retire"}], "then": "retired", "why": "any lock can be retired"},
+      {"when": [{"field": "state", "op": "is", "value": "closed"}, {"field": "event", "op": "is", "value": "push"}], "then": "open", "why": "a closed door opens"},
+      {"when": [{"field": "state", "op": "is", "value": "closed"}, {"field": "event", "op": "is", "value": "lock"}], "then": "locked", "why": "only a closed door locks"},
+      {"when": [{"field": "state", "op": "is", "value": "open"}, {"field": "event", "op": "is", "value": "shut"}], "then": "closed", "why": "an open door closes"},
+      {"when": [{"field": "state", "op": "is", "value": "locked"}, {"field": "event", "op": "is", "value": "unlock"}], "then": "closed", "why": "unlocking leaves it closed"},
+      {"when": [{"field": "state", "op": "is", "value": "open"}], "then": "open", "why": "other events leave it open"},
+      {"when": [{"field": "state", "op": "is", "value": "locked"}], "then": "locked", "why": "other events leave it locked"}
+    ],
+    "otherwise": "closed",
+    "otherwiseWhy": "other events leave a closed door closed",
+    "properties": [
+      {"kind": "never", "when": [{"field": "state", "op": "is", "value": "open"}], "then": "locked", "why": "an open door is never locked"},
+      {"kind": "never", "when": [{"field": "state", "op": "is", "value": "locked"}, {"field": "event", "op": "is", "value": "push"}], "then": "open", "why": "pushing a locked door does not open it"}
+    ],
+    "examples": [
+      {"request": "closed push", "response": "open"},
+      {"request": "open lock", "response": "open"},
+      {"request": "closed lock", "response": "locked"},
+      {"request": "locked push", "response": "locked"},
+      {"request": "locked unlock", "response": "closed"},
+      {"request": "retired unlock", "response": "retired"}
+    ]
+  }
+}
