@@ -18,6 +18,16 @@ The three honesty levels (R2):
 `cargo xtask audit-limits` fails if any code path returns an error the
 model does not sanction.
 
+## frame
+
+| ID | Level | Statement |
+| --- | --- | --- |
+| `FR-01` | `build` | With a working worker, the page loads and verifies the archive only in that worker before using its identities or guest |
+| `FR-02` | `build` | A returning browser whose worker kept an earlier deploy serves this deploy from the navigation that brings its page |
+| `FR-03` | `build` | A first visit's bytes are counted once the page has started, the frame's and the app's each within its own budget |
+| `FR-04` | `build` | An app's workspace key opens only on a device of the Prism ID that made it, follows the ID when it joins or is recovered, and stays locked on a removed device |
+| `FR-05` | `build` | An app's pages on every device of one Prism ID meet on a relay topic only those devices derive, per app, with every message sealed to the ID, and a removed device is left behind |
+
 ## prism_course_quiz
 
 | ID | Level | Statement |
@@ -30,16 +40,6 @@ model does not sanction.
 | `PC-06` | `build` | The app always answers correct when question equals 9 and answer is c |
 | `PC-07` | `build` | The app always answers correct when question is at least 15 and question is at most 16 and answer is a |
 | `PC-08` | `build` | The app always answers correct when question differs from 8 and question differs from 9 and question differs from 15 and question differs from 16 and answer is b |
-
-## frame
-
-| ID | Level | Statement |
-| --- | --- | --- |
-| `FR-01` | `build` | With a working worker, the page loads and verifies the archive only in that worker before using its identities or guest |
-| `FR-02` | `build` | A returning browser whose worker kept an earlier deploy serves this deploy from the navigation that brings its page |
-| `FR-03` | `build` | A first visit's bytes are counted once the page has started, the frame's and the app's each within its own budget |
-| `FR-04` | `build` | An app's workspace key opens only on a device of the Prism ID that made it, follows the ID when it joins or is recovered, and stays locked on a removed device |
-| `FR-05` | `build` | An app's pages on every device of one Prism ID meet on a relay topic only those devices derive, per app, with every message sealed to the ID, and a removed device is left behind |
 
 ## Cited authorities
 
