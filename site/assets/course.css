@@ -1,0 +1,15 @@
+/* The course's own parts: quizzes, the playground, progress. Tokens are docs.css's. */
+.co-out { display: block; margin-top: 8px; font-size: 14px; color: hsl(var(--fd-dim)); }
+.co-quiz fieldset { border: 1px solid hsl(var(--fd-line)); border-radius: 8px; padding: 12px 16px; margin: 12px 0; }
+.co-quiz legend { padding: 0 6px; font-weight: 700; }
+.co-quiz button, .co-play button { font: inherit; font-size: 14px; color: hsl(var(--fd-fg)); background: hsl(var(--fd-panel)); border: 1px solid hsl(var(--fd-line-strong)); border-radius: 6px; padding: 4px 10px; margin: 4px 6px 4px 0; cursor: pointer; }
+.co-quiz button[aria-pressed="true"] { border-color: hsl(var(--fd-fg)); font-weight: 700; }
+.co-quiz button.co-right { outline: 2px solid hsl(140 60% 45%); }
+.co-quiz button.co-wrong { outline: 2px solid hsl(0 70% 55%); }
+.co-play { border: 1px solid hsl(var(--fd-line)); border-radius: 8px; padding: 12px 16px; margin: 16px 0; background: hsl(var(--fd-panel)); }
+.co-play table { min-width: 0; }
+.co-play tr.co-hit td { background: hsl(var(--fd-bg)); font-weight: 700; }
+.co-play input[type="text"] { font: inherit; font-family: "JetBrains Mono", monospace; color: hsl(var(--fd-fg)); background: hsl(var(--fd-bg)); border: 1px solid hsl(var(--fd-line-strong)); border-radius: 6px; padding: 4px 8px; width: 9rem; }
+.co-play .co-verdict { display: block; margin-top: 12px; padding: 10px 12px; border-left: 3px solid hsl(140 60% 45%); font-family: "JetBrains Mono", monospace; font-size: 13px; white-space: pre-wrap; }
+.co-play .co-verdict.co-refused { border-left-color: hsl(0 70% 55%); }
+pre.co-output { border-style: dashed; }

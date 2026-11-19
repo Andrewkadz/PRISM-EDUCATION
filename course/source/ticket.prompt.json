@@ -1,0 +1,38 @@
+{
+  "schema": "prism/prompt/1",
+  "pattern": "decisionTable",
+  "goal": "Decide what a cinema ticket costs, so no child or senior is ever charged the full price.",
+  "repository": "OWNER/prism-ticket-price",
+  "app": {
+    "name": "ticket-price",
+    "title": "Ticket price",
+    "purpose": "Decide the price band of one cinema ticket from the visitor's age and whether they hold a member card.",
+    "fields": [
+      {"name": "age", "kind": "number", "min": 0, "max": 120, "means": "the visitor's age in whole years"},
+      {"name": "member", "kind": "choice", "values": ["no", "yes"], "means": "whether the visitor shows a member card"}
+    ],
+    "outcomes": ["free", "reduced", "full"],
+    "meanings": {"free": "no charge", "reduced": "the reduced price", "full": "the full price"},
+    "rules": [
+      {"when": [{"field": "age", "op": "<", "value": 3}], "then": "free", "why": "under-3s go free"},
+      {"when": [{"field": "age", "op": "<", "value": 16}], "then": "reduced", "why": "children pay the reduced price"},
+      {"when": [{"field": "age", "op": ">=", "value": 65}], "then": "reduced", "why": "seniors pay the reduced price"},
+      {"when": [{"field": "member", "op": "is", "value": "yes"}], "then": "reduced", "why": "members pay the reduced price"}
+    ],
+    "otherwise": "full",
+    "otherwiseWhy": "an adult without a card pays full price",
+    "properties": [
+      {"kind": "never", "when": [{"field": "age", "op": "<", "value": 16}], "then": "full", "why": "no child pays full price"},
+      {"kind": "never", "when": [{"field": "age", "op": ">=", "value": 65}], "then": "full", "why": "no senior pays full price"},
+      {"kind": "always", "when": [{"field": "age", "op": "<", "value": 3}], "then": "free", "why": "babies are always free"}
+    ],
+    "limits": ["a member under 3 still goes free"],
+    "examples": [
+      {"request": "2 no", "response": "free"},
+      {"request": "10 no", "response": "reduced"},
+      {"request": "30 no", "response": "full"},
+      {"request": "30 yes", "response": "reduced"},
+      {"request": "70 no", "response": "reduced"}
+    ]
+  }
+}

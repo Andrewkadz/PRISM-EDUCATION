@@ -1,3 +1,14 @@
+# PRISM-EDUCATION
+
+An onboarding course that teaches how to work with Prism, with its quizzes graded by a proved Prism app.
+
+- **Course:** https://andrewkadz.github.io/PRISM-EDUCATION/course/
+- **Quiz app:** https://andrewkadz.github.io/PRISM-EDUCATION/ grades one answer per request, such as `8 a` (question 8, option a), as `correct` or `incorrect`. Lean proved its 8 properties: no wrong answer is ever marked correct, and every right answer always is. Its spec is in `openspec/specs/prism-course-quiz/spec.md`.
+- **Course source:** `course/source/`. Edit `course.json`, then run `node build.mjs` there and copy `site/course` and `site/assets` into `site/`.
+- The rest of this repository is the [UOR-Foundation/template](https://github.com/UOR-Foundation/template) it was built from; its README follows.
+
+---
+
 <p align="center">
   <img src="assets/banner.svg" alt="UOR Prism template: model it, prove it, ship the proof" width="100%">
 </p>

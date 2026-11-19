@@ -1,0 +1,1307 @@
+{
+  "spec": "prism/course/1",
+  "about": "The Prism onboarding course, declared as data. build.mjs writes every page from this file alone, then the content standard (prism/content-standard/1) enriches and measures them. Change this file, not the pages.",
+  "title": "Prism onboarding course",
+  "brand": "Prism",
+  "live": "https://andrewkadz.github.io/PRISM-EDUCATION/",
+  "links": {
+    "docs": "https://uor.foundation/docs",
+    "devrel": "https://afflom.github.io/prism-devrel"
+  },
+  "provenance": "Written from [the Prism docs](https://uor.foundation/docs) and [Prism-DevRel](https://afflom.github.io/prism-devrel/). The Calculator commands were run with prism-code 0.9.5 on 2026-11-18. The ticket price and door lock prompts were checked with the Prism-DevRel builder. Lean proofs and `just vv` were not run for the ticket and door examples. The quiz grader's 8 properties were proved by Lean.",
+  "pages": [
+    {
+      "slug": "",
+      "title": "Prism onboarding course",
+      "nav": "Start here",
+      "summary": "Learn what Prism proves, run a sample app, write your own app and put it online.",
+      "journey": "discover",
+      "audience": "kai",
+      "lead": "This course takes you from never having heard of Prism to a verified app of your own. Take the modules in order. Each one ends with a short quiz.",
+      "figure": {
+        "kind": "flow",
+        "title": "The course, in order",
+        "caption": "Six modules and a reference page. Each module builds on the one before it.",
+        "steps": [
+          {
+            "label": "Why Prism",
+            "sub": "proved or tested"
+          },
+          {
+            "label": "How it works",
+            "sub": "sentence to app file"
+          },
+          {
+            "label": "Try the sample",
+            "sub": "seven commands"
+          },
+          {
+            "label": "Your first app",
+            "sub": "one prompt"
+          },
+          {
+            "label": "Patterns",
+            "sub": "pick one of three"
+          },
+          {
+            "label": "Ship it",
+            "sub": "GitHub Pages"
+          }
+        ]
+      },
+      "blocks": [
+        {
+          "h2": "The modules",
+          "id": "modules"
+        },
+        {
+          "table": {
+            "head": [
+              "Module",
+              "You will be able to",
+              "Time"
+            ],
+            "rows": [
+              [
+                "[1. Why Prism](why/)",
+                "Say what Prism proves and what it only tests",
+                "5 min"
+              ],
+              [
+                "[2. How it works](how-it-works/)",
+                "Follow one sentence to a sealed, checked app file",
+                "10 min"
+              ],
+              [
+                "[3. Try the sample](try-the-sample/)",
+                "Inspect, run, check, push and pull the Calculator app",
+                "15 min"
+              ],
+              [
+                "[4. Your first app](first-app/)",
+                "Write a `prism/prompt/1` prompt and read the builder's verdict",
+                "20 min"
+              ],
+              [
+                "[5. Patterns](patterns/)",
+                "Choose a decision table, a policy decision or a state machine",
+                "10 min"
+              ],
+              [
+                "[6. Ship it](ship/)",
+                "Know what the builder writes and put it on GitHub Pages",
+                "15 min"
+              ],
+              [
+                "[Reference](reference/)",
+                "Look up a term or a command",
+                "any time"
+              ]
+            ]
+          }
+        },
+        {
+          "progress": true
+        },
+        {
+          "h2": "Graded by a proved app",
+          "id": "graded"
+        },
+        {
+          "p": "Every quiz answer goes to [the Prism course quiz app](../). It is a Prism app built from this course. Lean proved that it never marks a wrong answer right."
+        },
+        {
+          "p": "The app runs in your browser. A request is the question number and your option, such as `8 a`. It answers `correct` or `incorrect`."
+        },
+        {
+          "h2": "Two ways in",
+          "id": "ways"
+        },
+        {
+          "p": "Prism has two front doors. Both share one core: the `app` member of a prompt is the same `prism/spec/1` spec an agent drafts."
+        },
+        {
+          "table": {
+            "head": [
+              "",
+              "Agent path",
+              "Prompt path"
+            ],
+            "rows": [
+              [
+                "You start with",
+                "One sentence to your coding agent",
+                "One JSON prompt (`prism/prompt/1`)"
+              ],
+              [
+                "Tooling",
+                "`npx prism-code@latest setup` (MCP servers and a skill)",
+                "The builder at /start, or `node builder/cli.mjs`"
+              ],
+              [
+                "You get",
+                "A proved `.holo` app file on your machine",
+                "A whole repository: every facet, tests and a site"
+              ],
+              [
+                "Goes live",
+                "`prism-code push` to a registry",
+                "GitHub Pages, after `just vv` passes"
+              ],
+              [
+                "Read",
+                "[Prism docs: build](https://uor.foundation/docs/get-started/build)",
+                "[Prism-DevRel: start](https://afflom.github.io/prism-devrel/start/)"
+              ]
+            ]
+          }
+        },
+        {
+          "h2": "Before you start",
+          "id": "before"
+        },
+        {
+          "list": [
+            "Node.js 22 or later. Modules 3 and 4 run on any laptop.",
+            "No account is needed until module 6. To ship, you need git, the `gh` CLI and a GitHub account.",
+            "Lean proofs run on the hosted verifier, or on your machine in the SDK image (Docker, about 5.5 GB)."
+          ]
+        }
+      ]
+    },
+    {
+      "slug": "why",
+      "title": "Why Prism",
+      "nav": "1. Why Prism",
+      "summary": "What Prism proves for every request, what it only tests, and which apps it fits.",
+      "diataxis": "explanation",
+      "journey": "discover",
+      "audience": "kai",
+      "lead": "Tests check the cases someone thought of. With Prism you state what your app must never do and must always do. Lean then proves each statement for every possible request.",
+      "figure": {
+        "kind": "graph",
+        "title": "What Prism proves and what it tests",
+        "caption": "Left, three parts of an app description. Right, what each becomes. Only a property becomes a theorem.",
+        "nodes": [
+          {
+            "id": "p",
+            "label": "Property",
+            "sub": "never or always",
+            "layer": 0
+          },
+          {
+            "id": "r",
+            "label": "Rule",
+            "sub": "when, then",
+            "layer": 0
+          },
+          {
+            "id": "e",
+            "label": "Example",
+            "sub": "request and answer",
+            "layer": 0
+          },
+          {
+            "id": "t",
+            "label": "Theorem",
+            "sub": "proved for every request",
+            "layer": 1
+          },
+          {
+            "id": "g",
+            "label": "Program",
+            "sub": "generated",
+            "layer": 1
+          },
+          {
+            "id": "v",
+            "label": "Acceptance vector",
+            "sub": "replayed",
+            "layer": 1
+          }
+        ],
+        "edges": [
+          {
+            "from": "p",
+            "to": "t",
+            "label": "proved"
+          },
+          {
+            "from": "r",
+            "to": "g",
+            "label": "generated"
+          },
+          {
+            "from": "e",
+            "to": "v",
+            "label": "tested"
+          }
+        ]
+      },
+      "blocks": [
+        {
+          "p": "The app ships as one sealed file. Anyone can check that file before they run it."
+        },
+        {
+          "h2": "Proved and tested are different claims",
+          "id": "claims"
+        },
+        {
+          "p": "**Proved** means the Lean kernel checked a property for every request. **Tested** means the examples replayed correctly."
+        },
+        {
+          "p": "Rules, examples and the reading of requests are tested, not proved. Nothing proves that your rules are the right rules. That judgment stays with you."
+        },
+        {
+          "table": {
+            "head": [
+              "Part of the app",
+              "Proved or tested",
+              "How it is checked"
+            ],
+            "rows": [
+              [
+                "Property (never or always)",
+                "Proved",
+                "A theorem the Lean kernel checks for every request"
+              ],
+              [
+                "Rule (when, then)",
+                "Tested",
+                "The examples, and the properties that constrain it"
+              ],
+              [
+                "Example",
+                "Tested",
+                "Replayed byte for byte as an acceptance vector"
+              ],
+              [
+                "Reading a request",
+                "Tested",
+                "Malformed requests answer the reserved `invalid`"
+              ],
+              [
+                "The app file",
+                "Checked",
+                "Its BLAKE3 fingerprint is recomputed on load"
+              ]
+            ]
+          }
+        },
+        {
+          "h2": "Where Prism fits",
+          "id": "fit"
+        },
+        {
+          "p": "Use Prism when a wrong answer is costly. Good first apps are approvals, eligibility, limits, access rules, and checks an agent relies on."
+        },
+        {
+          "p": "Today the guided path builds decision apps within these limits:"
+        },
+        {
+          "table": {
+            "head": [
+              "Part",
+              "Limit today"
+            ],
+            "rows": [
+              [
+                "Request",
+                "One line of up to 8 fields, separated by spaces"
+              ],
+              [
+                "Field",
+                "A whole number, or a choice of 2 to 32 words"
+              ],
+              [
+                "Answer",
+                "One of a fixed set of outcomes, plus the reserved `invalid`"
+              ],
+              [
+                "Rules",
+                "Up to 24, tried in order; the first match decides"
+              ],
+              [
+                "Conditions",
+                "Compare a field with a value or another field: `is`, `is not`, `<`, `<=`, `>`, `>=`"
+              ]
+            ]
+          }
+        },
+        {
+          "p": "**Conditions do no arithmetic.** A leap year app cannot test whether a year divides by 4. Pass the result in as a field instead, such as `divisible-by-4: yes or no`."
+        }
+      ],
+      "quiz": [
+        {
+          "q": "A property says the app never answers full when age is below 16. What does Lean check?",
+          "options": [
+            "The examples you wrote",
+            "Every possible request",
+            "A random sample of requests"
+          ],
+          "answer": 1,
+          "why": "Each property becomes a theorem proved for every request, not a sample."
+        },
+        {
+          "q": "Which of these is a good first Prism app?",
+          "options": [
+            "A photo editor",
+            "A loan approval decision",
+            "A chat server"
+          ],
+          "answer": 1,
+          "why": "The guided path is built for decision apps where a wrong answer is costly."
+        },
+        {
+          "q": "A leap year app must know whether a year divides by 4. How do you model that?",
+          "options": [
+            "Write year % 4 in a condition",
+            "Add a field such as divisible-by-4: yes or no",
+            "It cannot be built"
+          ],
+          "answer": 1,
+          "why": "Conditions cannot do arithmetic, so the caller supplies the result as a field."
+        }
+      ]
+    },
+    {
+      "slug": "how-it-works",
+      "title": "How it works",
+      "nav": "2. How it works",
+      "summary": "How one sentence becomes a proved, sealed app file, and what is checked before it runs.",
+      "diataxis": "explanation",
+      "journey": "evaluate",
+      "audience": "vera",
+      "lead": "One description, proved by Lean, produces the program. This page follows it from a sentence to a running app.",
+      "figure": {
+        "kind": "flow",
+        "title": "From a sentence to a running app",
+        "caption": "You write the first two steps. Prism writes the next three. Anyone who receives the file runs the last two.",
+        "steps": [
+          {
+            "label": "Sentence",
+            "sub": "or a JSON prompt"
+          },
+          {
+            "label": "Spec",
+            "sub": "you approve it"
+          },
+          {
+            "label": "LexLean model",
+            "sub": "one source"
+          },
+          {
+            "label": "Proofs and program",
+            "sub": "both from the model"
+          },
+          {
+            "label": ".holo file",
+            "sub": "sealed"
+          },
+          {
+            "label": "Verify",
+            "sub": "bytes, evidence, policy"
+          },
+          {
+            "label": "Run or share",
+            "sub": "run, serve, push, pull"
+          }
+        ]
+      },
+      "blocks": [
+        {
+          "h2": "Each step",
+          "id": "steps"
+        },
+        {
+          "dl": [
+            [
+              "Sentence",
+              "Describe what the app decides. On the agent path, ask something like “Build me a Prism app that decides whether a payment is approved.”"
+            ],
+            [
+              "Spec",
+              "Purpose, fields, outcomes, ordered rules, properties and examples. Read the properties most carefully: they are the only part that is proved."
+            ],
+            [
+              "LexLean model",
+              "Prism writes the spec as a model in LexLean. The proof and the program both come from it. So a proof about the model is a proof about what runs."
+            ],
+            [
+              "Proofs and program",
+              "Each property becomes a theorem the Lean kernel checks. The program is a WebAssembly guest with no imports: no clock, randomness, network or files."
+            ],
+            [
+              ".holo file",
+              "One file with the program, the model, its build record, its permissions and a browser view. Its BLAKE3 fingerprint names it."
+            ],
+            [
+              "Verify",
+              "Three questions. Are these the sealed bytes? Who signed what? Is that evidence enough to run it here?"
+            ],
+            [
+              "Run or share",
+              "Run one request, serve the view on a port, or push to a registry. A pull writes nothing until the checks pass."
+            ]
+          ]
+        },
+        {
+          "h2": "Evidence levels",
+          "id": "levels"
+        },
+        {
+          "p": "Before an app runs, Prism works out how much signed evidence it carries. Only signing raises the level. Apps built today are unsigned, so they are P0."
+        },
+        {
+          "table": {
+            "head": [
+              "Level",
+              "Carries",
+              "Asked for by"
+            ],
+            "rows": [
+              [
+                "P0",
+                "Nothing signed (bytes and examples are still verified)",
+                "`pull` by default"
+              ],
+              [
+                "P1",
+                "A signed build record",
+                "the provenance-only policy"
+              ],
+              [
+                "P2",
+                "Also a signed proof",
+                "`run` and `check` by default"
+              ],
+              [
+                "P3",
+                "Also a signed replay",
+                "your own policy file"
+              ]
+            ]
+          }
+        },
+        {
+          "p": "A policy says which level is enough. To run an unsigned app on purpose, write `{\"minimum\":\"P0\"}` to a policy file a reviewer can see."
+        },
+        {
+          "h2": "Where your source goes",
+          "id": "source"
+        },
+        {
+          "p": "Until the SDK image is on your machine, proofs run on the hosted verifier at [mcp.uor.foundation](https://mcp.uor.foundation/). It stores the files under `src/` unlisted. Anyone with the draft ID can read them."
+        },
+        {
+          "p": "**Never put secrets in a model.**"
+        }
+      ],
+      "quiz": [
+        {
+          "q": "What does the .holo fingerprint protect against?",
+          "options": [
+            "Wrong rules",
+            "Changed bytes",
+            "Slow requests"
+          ],
+          "answer": 1,
+          "why": "Loading recomputes the BLAKE3 fingerprint. If one byte changed, the file is refused."
+        },
+        {
+          "q": "Why does prism-code run refuse the sample app by default?",
+          "options": [
+            "It is broken",
+            "It is P0, and the default policy asks for P2",
+            "It needs a network connection"
+          ],
+          "answer": 1,
+          "why": "That is the safety check working. Pass a policy that accepts P0 on purpose."
+        },
+        {
+          "q": "Which parts of an app are proved, rather than tested?",
+          "options": [
+            "Rules and examples",
+            "Properties",
+            "All of them"
+          ],
+          "answer": 1,
+          "why": "Only properties are proved. Rules, examples and request reading are tested."
+        }
+      ]
+    },
+    {
+      "slug": "try-the-sample",
+      "title": "Try the sample app",
+      "nav": "3. Try the sample",
+      "summary": "Install prism-code, then look inside, check, run, push and pull its sample app.",
+      "diataxis": "tutorial",
+      "journey": "learn",
+      "audience": "kai",
+      "lead": "The prism-code package ships a small Calculator app. These seven steps use it. Every output below is what prism-code 0.9.5 printed, with long digests shortened.",
+      "figure": {
+        "kind": "flow",
+        "title": "Seven commands on the sample app",
+        "caption": "Each step uses the same file. Nothing is built; you only read, judge and run it.",
+        "steps": [
+          {
+            "label": "Install",
+            "sub": "npm install"
+          },
+          {
+            "label": "Inspect",
+            "sub": "read, not run"
+          },
+          {
+            "label": "Vectors",
+            "sub": "replay examples"
+          },
+          {
+            "label": "Check",
+            "sub": "default policy"
+          },
+          {
+            "label": "Policy",
+            "sub": "accept P0"
+          },
+          {
+            "label": "Run",
+            "sub": "three requests"
+          },
+          {
+            "label": "Push and pull",
+            "sub": "local store"
+          }
+        ]
+      },
+      "blocks": [
+        {
+          "h2": "1. Install the package",
+          "id": "install"
+        },
+        {
+          "p": "The package bundles the sample app. Keep its path in a variable."
+        },
+        {
+          "code": "npm install prism-code\nH=node_modules/prism-code/fixtures/Calculator.holo"
+        },
+        {
+          "h2": "2. Look inside without running it",
+          "id": "inspect"
+        },
+        {
+          "code": "npx prism-code inspect $H"
+        },
+        {
+          "output": "Name:      Calculator\nSize:      24801 B\nFooter:    8408e089...21ba (BLAKE3 of the body)\nModel:\n  Function:     calculate\n  Vectors:      22\n  Limits:       request 52 B, response 27 B, guest allocation 65536 B\nWorld:\n  Imports:         none\n  Purity:          pure: no clock, random, socket or filesystem import\nAttestations:\n  none\nVerification:\n  Footer:            ok\n  Labels:            ok\n  Cross-references:  ok"
+        },
+        {
+          "p": "Nothing runs. `Imports: none` means the app cannot reach a clock, randomness, the network or files."
+        },
+        {
+          "h2": "3. Replay every example",
+          "id": "vectors"
+        },
+        {
+          "code": "npx prism-code vectors $H"
+        },
+        {
+          "output": "22 of 22 vectors passed (holo, Calculator, identities verified)"
+        },
+        {
+          "p": "Each example is compared byte for byte. Exit code 0 means all of them passed."
+        },
+        {
+          "h2": "4. Ask for a verdict",
+          "id": "check"
+        },
+        {
+          "code": "npx prism-code check $H; echo \"exit=$?\""
+        },
+        {
+          "output": "FAILED  P0 unverified  policy default requires P2 or above\nReasons:\n  provenance.statement (Verification, withholds P1)\n  proof.statement (ProofMismatch, withholds P2)\n  replay.statement (Replay, withholds P3)\n  policy.level (PP5601, Verification, policy rule)\n    The level is P0; the policy requires P2 or above.\nexit=1"
+        },
+        {
+          "p": "This is the safety check working. The bytes are fine, but nothing is signed."
+        },
+        {
+          "h2": "5. Accept P0 on purpose",
+          "id": "policy"
+        },
+        {
+          "code": "echo '{\"minimum\":\"P0\"}' > policy.json\nnpx prism-code check $H --policy policy.json --json"
+        },
+        {
+          "output": "{\"holo\":\"blake3:8408e089...21ba\",\"level\":\"P0\",\"passed\":true,\n \"policy\":{\"minimum\":\"P0\",\"name\":\"policy.json\"},\"schema\":\"prism/verdict/1\"}"
+        },
+        {
+          "p": "`--allow-unverified` does the same, but warns on every start. A policy file is better, because a reviewer can see it."
+        },
+        {
+          "h2": "6. Send requests",
+          "id": "run"
+        },
+        {
+          "p": "A request is tab-separated: version, operation, then the operands."
+        },
+        {
+          "code": "npx prism-code run $H \"$(printf '1\\tadd\\t20\\t22')\" --policy policy.json --rm\nnpx prism-code run $H \"$(printf '1\\tdivide\\t1\\t0')\" --policy policy.json --rm; echo \" exit=$?\"\nnpx prism-code run $H \"$(printf '1\\tmod\\t1\\t2')\" --policy policy.json --rm"
+        },
+        {
+          "output": "1\tok\t42\n1\terror\tdivision-by-zero exit=0\n1\terror\tunknown-operation"
+        },
+        {
+          "p": "The operations are `add`, `subtract`, `multiply` and `divide`. An error answer is still a successful run, so the exit code is 0. `--rm` keeps no run record."
+        },
+        {
+          "h2": "7. Push and pull",
+          "id": "share"
+        },
+        {
+          "code": "npx prism-code push $H dir://./store:1.0\nnpx prism-code pull dir://./store:1.0 pulled.holo\ncmp $H pulled.holo && echo identical"
+        },
+        {
+          "output": "1.0: digest: sha256:208bb91c...b5e4 size: 968\nfingerprint: blake3:8408e089...21ba\nVerdict: P0, policy pull-default requires P0\nStatus: Verified and wrote pulled.holo\nidentical"
+        },
+        {
+          "p": "`pull` accepts P0, while `run` and `check` ask for P2. A failed check writes nothing."
+        },
+        {
+          "h2": "Exit codes",
+          "id": "exit"
+        },
+        {
+          "table": {
+            "head": [
+              "Command",
+              "0",
+              "1",
+              "2"
+            ],
+            "rows": [
+              [
+                "`check`",
+                "passed",
+                "failed the policy",
+                "no verdict: treat it as a failure"
+              ],
+              [
+                "`vectors`",
+                "every example matched",
+                "a mismatch, or an altered file",
+                ""
+              ],
+              [
+                "`replay`",
+                "unchanged",
+                "diverged",
+                "could not replay"
+              ],
+              [
+                "`builder/cli.mjs check`",
+                "accepted",
+                "",
+                "refused (64 is a usage error)"
+              ]
+            ]
+          }
+        }
+      ],
+      "quiz": [
+        {
+          "q": "What does prism-code inspect do to the app?",
+          "options": [
+            "Runs every example",
+            "Reads it without running it",
+            "Signs it"
+          ],
+          "answer": 1,
+          "why": "inspect prints the sections, digests, model and world. Nothing runs."
+        },
+        {
+          "q": "A divide by zero answers 1 error division-by-zero. What is the exit code?",
+          "options": [
+            "0",
+            "1",
+            "2"
+          ],
+          "answer": 0,
+          "why": "An error answer is still a successful run."
+        },
+        {
+          "q": "prism-code check exits 2. What does that mean?",
+          "options": [
+            "Passed with warnings",
+            "Failed the policy",
+            "No verdict: treat it as a failure"
+          ],
+          "answer": 2,
+          "why": "0 passed, 1 failed, 2 means no verdict was reached."
+        }
+      ]
+    },
+    {
+      "slug": "first-app",
+      "title": "Your first app",
+      "nav": "4. Your first app",
+      "summary": "Write one prompt for a ticket price app, see the builder refuse a broken rule, then build it.",
+      "diataxis": "tutorial",
+      "journey": "learn",
+      "audience": "kai",
+      "lead": "A prompt is one JSON document. Its `app` member is the spec, and the rest is optional. This page writes a prompt for a cinema ticket price, then checks it.",
+      "figure": {
+        "kind": "flow",
+        "title": "How the builder judges a prompt",
+        "caption": "The builder writes nothing until the examples agree and every property holds for all 242 possible requests.",
+        "steps": [
+          {
+            "label": "Read the prompt",
+            "sub": "fields and rules"
+          },
+          {
+            "label": "Replay examples",
+            "sub": "5 of them"
+          },
+          {
+            "label": "Check properties",
+            "sub": "242 requests"
+          },
+          {
+            "label": "Write the app",
+            "sub": "82 files"
+          }
+        ]
+      },
+      "blocks": [
+        {
+          "h2": "The parts of a prompt",
+          "id": "parts"
+        },
+        {
+          "table": {
+            "head": [
+              "`app` member",
+              "What to write",
+              "In the example"
+            ],
+            "rows": [
+              [
+                "`purpose`",
+                "What the app decides, in one sentence",
+                "the price band of one cinema ticket"
+              ],
+              [
+                "`fields`",
+                "A request is these values in order, separated by spaces",
+                "age (0 to 120), member (no or yes)"
+              ],
+              [
+                "`outcomes`",
+                "Lower-case words; `invalid` is reserved",
+                "free, reduced, full"
+              ],
+              [
+                "`rules`",
+                "`when` and `then`, in order; the first match decides",
+                "4 rules"
+              ],
+              [
+                "`otherwise`",
+                "The answer when no rule matches",
+                "full"
+              ],
+              [
+                "`properties`",
+                "`never` or `always`; each becomes a theorem",
+                "no child or senior pays full; under-3s are free"
+              ],
+              [
+                "`examples`",
+                "Requests and their answers; each becomes an acceptance vector",
+                "5 examples"
+              ],
+              [
+                "`limits`",
+                "What the app does not decide",
+                "a member under 3 still goes free"
+              ]
+            ]
+          }
+        },
+        {
+          "h2": "The whole prompt",
+          "id": "prompt"
+        },
+        {
+          "p": "Save it as `ticket.prompt.json`. The builder accepted it: 3 properties, 29 acceptance vectors and 82 files."
+        },
+        {
+          "file": "ticket.prompt.json"
+        },
+        {
+          "h2": "Try the rules",
+          "id": "playground"
+        },
+        {
+          "p": "This runs the same first-match rules and the same check of every request as the builder, in your browser. Switch rules off to see what breaks."
+        },
+        {
+          "playground": "ticket"
+        },
+        {
+          "list": [
+            "Switch off REQ-003. What does the builder refuse, and why?",
+            "Switch it back on, then switch off REQ-001. Which example breaks first?",
+            "Type `121 no`, then `07 no`. Why is each one `invalid`?"
+          ]
+        },
+        {
+          "h2": "Check it on the command line",
+          "id": "cli"
+        },
+        {
+          "code": "git clone https://github.com/afflom/prism-devrel.git && cd prism-devrel\nnode builder/cli.mjs check ticket.prompt.json\nnode builder/cli.mjs build ticket.prompt.json --out my-app"
+        },
+        {
+          "output": "Ticket price: Decision table (OMG DMN 1.5, hit policy FIRST), 82 files, 29 acceptance vectors\nTP-01: The app never answers full when age is below 16\nTP-02: The app never answers full when age is at least 65\nTP-03: The app always answers free when age is below 3\n..."
+        },
+        {
+          "p": "With the senior rule removed, the real builder refused the prompt and named the request that breaks it:"
+        },
+        {
+          "output": "refused: INV-002 does not hold. The request `65 no` meets \"age is at least 65\",\nand the rules answer full (otherwise). Change a rule, or restate the property.\nexit=2"
+        },
+        {
+          "h2": "Build it in the browser",
+          "id": "browser"
+        },
+        {
+          "p": "Open [the builder at /start](https://afflom.github.io/prism-devrel/start/). Pick an example, edit the prompt and build the app. It runs in the page and sends nothing anywhere."
+        }
+      ],
+      "quiz": [
+        {
+          "q": "Two rules match 10 yes: REQ-002 (age below 16) and REQ-004 (member). Which decides?",
+          "options": [
+            "The last one",
+            "The first one in order",
+            "Both are merged"
+          ],
+          "answer": 1,
+          "why": "Rules are tried in order, and the first match decides (DMN hit policy FIRST)."
+        },
+        {
+          "q": "You remove the senior rule. What does the builder do?",
+          "options": [
+            "Builds anyway",
+            "Refuses, and names 65 no as the request that breaks INV-002",
+            "Asks Lean to fix it"
+          ],
+          "answer": 1,
+          "why": "A broken property comes back with a counterexample, before anything is written."
+        },
+        {
+          "q": "What does 30 maybe answer?",
+          "options": [
+            "full",
+            "invalid",
+            "reduced"
+          ],
+          "answer": 1,
+          "why": "maybe is not a value of the member field, so the request is malformed."
+        }
+      ]
+    },
+    {
+      "slug": "patterns",
+      "title": "Choose a pattern",
+      "nav": "5. Patterns",
+      "summary": "Pick one of three patterns for your app, then write a state machine.",
+      "diataxis": "howToGuide",
+      "journey": "build",
+      "audience": "iris",
+      "lead": "Set `pattern` in the prompt to choose how the answer is read. Each pattern follows a published standard, and the builder checks the prompt against it.",
+      "figure": {
+        "kind": "bars",
+        "title": "Patterns in the example gallery",
+        "caption": "The 34 example prompts on Prism-DevRel, counted by pattern. Most apps are decision tables.",
+        "unit": "examples",
+        "rows": [
+          {
+            "label": "decisionTable",
+            "value": 22
+          },
+          {
+            "label": "policyDecision",
+            "value": 6
+          },
+          {
+            "label": "stateMachine",
+            "value": 6
+          }
+        ]
+      },
+      "blocks": [
+        {
+          "h2": "Pick a pattern",
+          "id": "pick"
+        },
+        {
+          "table": {
+            "head": [
+              "`pattern`",
+              "Pick it when",
+              "Standard",
+              "Guide"
+            ],
+            "rows": [
+              [
+                "`decisionTable` (default)",
+                "The answer is one of your outcomes, chosen by ordered rules",
+                "OMG DMN 1.5, hit policy FIRST",
+                "[Decision table guide](https://afflom.github.io/prism-devrel/guides/decision-table/)"
+              ],
+              [
+                "`policyDecision`",
+                "The answer is permit, deny, not-applicable or indeterminate",
+                "OASIS XACML 3.0",
+                "[Policy decision guide](https://afflom.github.io/prism-devrel/guides/policy-decision/)"
+              ],
+              [
+                "`stateMachine`",
+                "The answer is the next state, from the current state and an event",
+                "OMG UML 2.5.1",
+                "[State machine guide](https://afflom.github.io/prism-devrel/guides/state-machine/)"
+              ]
+            ]
+          }
+        },
+        {
+          "h2": "Write a state machine",
+          "id": "machine"
+        },
+        {
+          "p": "The state travels in the request, so the app keeps nothing between requests. Fill in the `machine` member:"
+        },
+        {
+          "list": [
+            "`state` is the field that holds the current state.",
+            "`initial` is the state a run starts in.",
+            "`final` lists the states a run never leaves.",
+            "The outcomes must be exactly the values of the state field."
+          ]
+        },
+        {
+          "p": "Here is a door lock, summarized from a prompt the builder accepted:"
+        },
+        {
+          "code": "\"pattern\": \"stateMachine\",\n\"machine\": {\"state\": \"state\", \"initial\": \"closed\", \"final\": [\"retired\"]},\nfields:  state = closed | open | locked | retired\n         event = push | shut | lock | unlock | retire\nrules (first match wins):\n  state is retired                  -> retired\n  event is retire                   -> retired\n  state is closed and event is push -> open\n  state is closed and event is lock -> locked\n  state is open and event is shut   -> closed\n  state is locked and event unlock  -> closed\n  state is open                     -> open\n  state is locked                   -> locked\n  otherwise                         -> closed\nproperties:\n  never locked when state is open\n  never open when state is locked and event is push"
+        },
+        {
+          "p": "Check it the same way as any prompt:"
+        },
+        {
+          "output": "Door lock: State machine (OMG UML 2.5.1 behavioral state machine), 82 files, 30 acceptance vectors\nmachine: 4 states from closed; reachable closed, open, locked, retired; final retired; derived INV-003\nDL-01: The app never answers locked when state is open\nDL-02: The app never answers open when state is locked and event is push\nDL-03: The app always answers retired when state is retired\n..."
+        },
+        {
+          "p": "The builder found which states can be reached. From `final`, it added INV-003: a retired lock stays retired."
+        }
+      ],
+      "quiz": [
+        {
+          "q": "The answers must be exactly permit, deny, not-applicable and indeterminate. Which pattern?",
+          "options": [
+            "decisionTable",
+            "policyDecision",
+            "stateMachine"
+          ],
+          "answer": 1,
+          "why": "policyDecision follows OASIS XACML 3.0."
+        },
+        {
+          "q": "Where does a state machine app keep its state between requests?",
+          "options": [
+            "In a database",
+            "In the request itself",
+            "In the browser"
+          ],
+          "answer": 1,
+          "why": "The state travels in the request, so the app keeps nothing between requests."
+        },
+        {
+          "q": "What does the builder prove in addition for a state machine?",
+          "options": [
+            "A final state is never left, and no run leaves the reachable states",
+            "It runs faster",
+            "Nothing more"
+          ],
+          "answer": 0,
+          "why": "Those theorems come from machine.final and machine.initial."
+        }
+      ]
+    },
+    {
+      "slug": "ship",
+      "title": "Ship your app",
+      "nav": "6. Ship it",
+      "summary": "See what the builder writes from your prompt, then put the app on GitHub Pages.",
+      "diataxis": "howToGuide",
+      "journey": "scale",
+      "audience": "otto",
+      "lead": "A Prism app is one model with several facets, such as architecture, security and quality. Every facet but behavior follows from the behavior by fixed rules.",
+      "figure": {
+        "kind": "flow",
+        "title": "From a prompt to a live site",
+        "caption": "You do the first four steps. The repository's Pages workflow does the last two on every push.",
+        "steps": [
+          {
+            "label": "Build the zip",
+            "sub": "from the prompt"
+          },
+          {
+            "label": "New repository",
+            "sub": "from the template"
+          },
+          {
+            "label": "Turn on Pages",
+            "sub": "workflow build"
+          },
+          {
+            "label": "Unzip and push",
+            "sub": "to main"
+          },
+          {
+            "label": "Gate",
+            "sub": "just vv proves it"
+          },
+          {
+            "label": "Publish",
+            "sub": "GitHub Pages"
+          }
+        ]
+      },
+      "blocks": [
+        {
+          "h2": "What the builder writes",
+          "id": "facets"
+        },
+        {
+          "p": "Leave the optional prompt members out and you still get every facet, with defaults. Add them to describe your real system."
+        },
+        {
+          "table": {
+            "head": [
+              "Prompt member",
+              "Facet",
+              "Records",
+              "Checked against"
+            ],
+            "rows": [
+              [
+                "`app` (the spec)",
+                "Behavior",
+                "The model, a theorem per property, acceptance vectors",
+                "LexLean, Lean kernel"
+              ],
+              [
+                "`stakeholders`, `concerns`, `components`",
+                "Architecture",
+                "Stakeholders, concerns, components, edges, views",
+                "ISO/IEC/IEEE 42010:2022"
+              ],
+              [
+                "(derived from `app`)",
+                "Design views",
+                "An OPM view; UML component, sequence and state views",
+                "ISO/PAS 19450, UML 2.5.1"
+              ],
+              [
+                "`journeys`",
+                "Features and journeys",
+                "A feature per rule and property, a journey per stakeholder",
+                "PrismPM features"
+              ],
+              [
+                "`threats`",
+                "Security and threat model",
+                "Assets, STRIDE threats, risks, controls with evidence",
+                "ISO/IEC 27034, 27005"
+              ],
+              [
+                "`quality`",
+                "Quality",
+                "Characteristics, requirements, measures with thresholds",
+                "ISO/IEC 25010:2023"
+              ],
+              [
+                "`license`",
+                "Compliance",
+                "An obligation per standard, each naming its evidence",
+                "SPDX"
+              ],
+              [
+                "`repository`",
+                "System and release",
+                "`prism.toml`, `site/app.json`, tests, OpenSpec",
+                "UOR-Foundation/template gate"
+              ]
+            ]
+          }
+        },
+        {
+          "h2": "Put it on GitHub Pages",
+          "id": "pages"
+        },
+        {
+          "p": "Set `repository` in the prompt to `OWNER/prism-NAME`, where NAME is `app.name`. Build the zip, then run:"
+        },
+        {
+          "code": "gh repo create OWNER/prism-NAME --template UOR-Foundation/template --public\ngh api -X POST repos/OWNER/prism-NAME/pages -f build_type=workflow\ngit -c core.autocrlf=false clone https://github.com/OWNER/prism-NAME.git\ncd prism-NAME\ngit rm -q app/src/Contract.lex.tex crates/conformance/tests/contract.rs features/suites/contract.feature\nunzip -o ../prism-NAME.zip\ngit add -A && git commit -m \"Build the app from its prompt\" && git push"
+        },
+        {
+          "p": "The push starts the Pages workflow. It runs the gate, `just vv`, which proves the app with the Lean kernel. Then it publishes the site."
+        },
+        {
+          "p": "To run the same gate first, follow [How to verify an app](https://afflom.github.io/prism-devrel/guides/verify/)."
+        },
+        {
+          "h2": "House rules of a template repository",
+          "id": "rules"
+        },
+        {
+          "list": [
+            "The model is the single source. Change the prompt, not the generated files.",
+            "`just vv` is the whole acceptance boundary. It runs in the SDK image that `prismpm.lock` pins.",
+            "A gate counts as evidence only after a planted defect shows it can fail.",
+            "Nothing is stubbed or hidden behind a flag."
+          ]
+        }
+      ],
+      "quiz": [
+        {
+          "q": "Which prompt member becomes the security and threat model facet?",
+          "options": [
+            "threats",
+            "quality",
+            "journeys"
+          ],
+          "answer": 0,
+          "why": "threats become STRIDE threats, risks and controls (ISO/IEC 27005 and 27034)."
+        },
+        {
+          "q": "What is the complete acceptance gate of a template repository?",
+          "options": [
+            "npm test",
+            "just vv, in the SDK image that prismpm.lock pins",
+            "The GitHub Pages build"
+          ],
+          "answer": 1,
+          "why": "just vv is the whole acceptance boundary. The Pages workflow runs it too."
+        },
+        {
+          "q": "You want to change a generated facet file. What should you do?",
+          "options": [
+            "Edit the file",
+            "Change the prompt and build again",
+            "Delete the facet"
+          ],
+          "answer": 1,
+          "why": "The prompt is the single source. Every file is written from it the same way each time."
+        }
+      ]
+    },
+    {
+      "slug": "reference",
+      "title": "Reference",
+      "nav": "Reference",
+      "summary": "Terms, commands and exit codes from the course, on one page.",
+      "diataxis": "reference",
+      "journey": "build",
+      "audience": "otto",
+      "lead": "Look up a term or a command. Nothing here needs to be read in order.",
+      "figure": {
+        "kind": "bars",
+        "title": "Signed statements at each evidence level",
+        "caption": "Each level adds one signed statement to the one before it. P0 carries none.",
+        "unit": "signed statements",
+        "rows": [
+          {
+            "label": "P0",
+            "value": 0
+          },
+          {
+            "label": "P1",
+            "value": 1
+          },
+          {
+            "label": "P2",
+            "value": 2
+          },
+          {
+            "label": "P3",
+            "value": 3
+          }
+        ]
+      },
+      "blocks": [
+        {
+          "h2": "Terms",
+          "id": "terms"
+        },
+        {
+          "dl": [
+            [
+              "Rule",
+              "A `when` and `then` line. Rules are tried in order, and the first match decides. Tested, not proved."
+            ],
+            [
+              "Example",
+              "A request with its exact expected answer. It becomes an acceptance vector carried in the app."
+            ],
+            [
+              "World",
+              "What the program may use. Today that is `hologram:guest/core-wasm@1`, which allows nothing."
+            ],
+            [
+              "Verdict",
+              "The result of a policy check: the level, pass or fail, and every reason (`prism/verdict/1`)."
+            ],
+            [
+              "Hosted verifier",
+              "The service at mcp.uor.foundation. It checks and proves models when the SDK image is not on your machine."
+            ],
+            [
+              "`just vv`",
+              "The complete acceptance gate of a template repository, run in the pinned SDK image."
+            ]
+          ]
+        },
+        {
+          "p": "Words marked on any page, such as property and policy, are defined at the foot of that page."
+        },
+        {
+          "h2": "Commands",
+          "id": "commands"
+        },
+        {
+          "code": "# Set up the agent path (preview first)\nnpx prism-code@latest setup --dry-run\nnpx prism-code@latest setup\n\n# Look, replay, judge, run\nnpx prism-code inspect app.holo\nnpx prism-code vectors app.holo\nnpx prism-code check app.holo --policy policy.json [--json]\nnpx prism-code run app.holo \"<request>\" --policy policy.json --rm\nnpx prism-code run app.holo --port 8080 --policy policy.json\n\n# Catch changed answers between builds\nnpx prism-code record app.holo --output history.json\nnpx prism-code replay history.json --image new.holo\n\n# Share\nnpx prism-code push app.holo dir://./store:1.0\nnpx prism-code pull dir://./store:1.0 pulled.holo\n\n# Prompt path, from a clone of afflom/prism-devrel\nnode builder/cli.mjs check prompt.json\nnode builder/cli.mjs build prompt.json --out my-app\nnode builder/cli.mjs schema"
+        },
+        {
+          "h2": "Where to go next",
+          "id": "next"
+        },
+        {
+          "list": [
+            "[The 34 example prompts](https://afflom.github.io/prism-devrel/examples/): copy the closest one and change it.",
+            "[The prompt reference](https://afflom.github.io/prism-devrel/start/reference/): every member, the CLI and the MCP tool.",
+            "[Give an agent the prism_prompt tool](https://afflom.github.io/prism-devrel/guides/agent-tool/).",
+            "[Case studies](https://afflom.github.io/prism-devrel/case-studies/): whole projects, read record by record.",
+            "[Use an app from JavaScript](https://uor.foundation/docs/guides/use-from-code) and [catch changed answers](https://uor.foundation/docs/guides/replay).",
+            "[The CLI reference](https://uor.foundation/docs/reference/cli) and [the concepts page](https://uor.foundation/docs/reference/concepts)."
+          ]
+        }
+      ]
+    }
+  ]
+}
